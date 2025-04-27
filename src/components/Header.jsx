@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { IoCartOutline } from "react-icons/io5";
 
 const Header = () => {
   return (
     <header>
-      <h1 className="shop-name">
+      <h1>
         Odin<span>Mart</span>
       </h1>
       <nav>

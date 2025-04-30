@@ -11,8 +11,9 @@ const Header = () => {
         <a href="#"> Shop</a>
         <a href="#"> Contact us</a>
         <div>
-          <a href="#">
+          <a href="#" className="cart-icon">
             <IoCartOutline />
+            <span className="cart-count">0</span>
           </a>
         </div>
       </nav>

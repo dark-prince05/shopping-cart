@@ -1,13 +1,46 @@
 import Header from "./Header.jsx";
 import { useState, useEffect } from "react";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
+import { RiLoader3Fill } from "react-icons/ri";
 
-const Shop = () => {
+const Shop = ({ addToCart }) => {
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [category, setcategory] = useState([]);
   const [searchedProduct, setSearchedProduct] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [productCount, setProductCount] = useState(
+    Array.from({ length: 20 }, (_, ind) => 1),
+  );
+
+  const handleCountChange = (e) => {
+    let dummy = [...productCount];
+    if (e.target.value > 1000) {
+      dummy[e.target.id] = 999;
+    } else if (e.target.value === "") {
+      dummy[e.target.id] = 1;
+    } else {
+      dummy[e.target.id] = parseInt(e.target.value);
+    }
+    setProductCount(dummy);
+  };
+
+  const increaseCount = (e) => {
+    let dummy = [...productCount];
+    if (dummy[e.target.id] > 998) {
+      return;
+    }
+    dummy[e.target.id]++;
+    setProductCount(dummy);
+  };
+
+  const decreaseCount = (e) => {
+    let dummy = [...productCount];
+    if (dummy[e.target.id] < 2) {
+      return;
+    }
+    dummy[e.target.id]--;
+    setProductCount(dummy);
+  };
 
   const filterProducts = (type) => {
     if (type === "all") return products;
@@ -21,7 +54,6 @@ const Shop = () => {
     let res = category.filter((product) =>
       product.title.toLowerCase().includes(key.trim()),
     );
-    console.log(searchedProduct);
     return res.length === 0 ? ["none"] : res;
   };
 
@@ -39,9 +71,7 @@ const Shop = () => {
         setLoading(false);
         setProducts(productList);
         setcategory(productList);
-        console.log(productList);
       } catch (err) {
-        setError(err);
         console.log(err);
       }
     };
@@ -89,7 +119,12 @@ const Shop = () => {
           </select>
         </div>
         <div className="products">
-          {searchedProduct[0] === "none" ? (
+          {loading ? (
+            <div className="loading">
+              <RiLoader3Fill className="loading-icon" />
+              Loading....
+            </div>
+          ) : searchedProduct[0] === "none" ? (
             <div className="product-not-match">
               No products match your criteria.
             </div>
@@ -118,11 +153,29 @@ const Shop = () => {
                           : `$${product.price}.00`}
                       </p>
                       <div className="product-count">
-                        <button>-</button>
-                        <input type="tel" />
-                        <button>+</button>
+                        <button id={product.id} onClick={decreaseCount}>
+                          -
+                        </button>
+                        <input
+                          type="tel"
+                          id={product.id}
+                          onChange={handleCountChange}
+                          value={productCount[product.id]}
+                        />
+                        <button id={product.id} onClick={increaseCount}>
+                          +
+                        </button>
                       </div>
-                      <button className="cart-btn">Add To Cart</button>
+                      <button
+                        className="cart-btn"
+                        onClick={(e) =>
+                          addToCart([
+                            { ...product, count: productCount[product.id] },
+                          ])
+                        }
+                      >
+                        Add To Cart
+                      </button>
                     </div>
                   </div>
                 );

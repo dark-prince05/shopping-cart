@@ -4,14 +4,15 @@ import Header from "./components/Header.jsx";
 import MainPage from "./components/MainPage.jsx";
 import PageDetails from "./components/PageDetails.jsx";
 import Footer from "./components/Footer.jsx";
+import Shop from "./components/Shop.jsx";
 
 function App() {
   return (
     <>
-      <Header />
-      <MainPage />
-      <PageDetails />
-      <Footer />
+      {/* <MainPage /> */}
+      {/* <PageDetails /> */}
+      {/* <Footer /> */}
+      <Shop />
     </>
   );
 }

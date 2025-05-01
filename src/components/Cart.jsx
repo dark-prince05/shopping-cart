@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+import { useOutletContext, Link } from "react-router-dom";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
 
-const Cart = ({ cartItems, setCartItems }) => {
+const Cart = () => {
+  const { cartItems, setCartItems } = useOutletContext(); //used to retrieve the functionality from the parent during routing
+
   const [totalAmt, setTotalAmt] = useState(0);
   const dialogRef = useRef(null);
 
@@ -45,7 +48,9 @@ const Cart = ({ cartItems, setCartItems }) => {
           <p className="add-product-text">
             Add some products to your cart before checkout.
           </p>
-          <button className="continue-shopping">Continue Shopping</button>
+          <Link to="/shop" className="continue-shopping">
+            Continue Shopping
+          </Link>
         </div>
       ) : (
         cartItems.map((product) => {
@@ -82,7 +87,9 @@ const Cart = ({ cartItems, setCartItems }) => {
         <>
           <div className="total-amt">Total Price: ${totalAmt}</div>
           <div className="shop-btns">
-            <button className="continue-shopping">Continue Shopping</button>
+            <Link to="/shop" className="continue-shopping">
+              Continue Shopping
+            </Link>
             <button
               className="checkout"
               onClick={() => {
@@ -96,10 +103,10 @@ const Cart = ({ cartItems, setCartItems }) => {
         </>
       )}
       <dialog ref={dialogRef}>
-        <h2>Thank you for purchasing</h2>
-        <button className="continue-shopping" onClick={closeDialog}>
-          Continue Shopping{" "}
-        </button>
+        <h2>Thank you for purchasing...</h2>
+        <Link to="/shop" className="continue-shopping" onClick={closeDialog}>
+          Continue Shopping
+        </Link>
       </dialog>
     </div>
   );

@@ -1,9 +1,11 @@
-import Header from "./Header.jsx";
 import { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
 import { RiLoader3Fill } from "react-icons/ri";
 
-const Shop = ({ addToCart }) => {
+const Shop = () => {
+  const { handleAddToCart } = useOutletContext(); //used to retrieve the functionality from the parent during routing
+
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [category, setcategory] = useState([]);
@@ -147,7 +149,7 @@ const Shop = ({ addToCart }) => {
                           product.category.slice(1)}
                       </p>
                       <p className="product-title">
-                        {product.title} <span>dummy</span>{" "}
+                        {product.title} <span>dummmmmy </span>
                         {/* dummy span is for pricing alignment*/}
                       </p>
                       <p className="product-ratings">
@@ -176,7 +178,7 @@ const Shop = ({ addToCart }) => {
                         className="cart-btn"
                         onClick={(e) => {
                           if (productCount[product.id] > 0)
-                            addToCart({
+                            handleAddToCart({
                               ...product,
                               count: productCount[product.id],
                             });

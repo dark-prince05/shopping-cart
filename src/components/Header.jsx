@@ -1,4 +1,5 @@
 import { IoCartOutline } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
 
 const Header = ({ cartItemsCount }) => {
   return (
@@ -7,15 +8,29 @@ const Header = ({ cartItemsCount }) => {
         Odin<span>Mart</span>
       </h1>
       <nav>
-        <a href="#"> Home</a>
-        <a href="#"> Shop</a>
-        <a href="#"> Contact us</a>
-        <div>
-          <a href="#" className="cart-icon">
-            <IoCartOutline />
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/shop"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          {" "}
+          Shop
+        </NavLink>
+        <NavLink
+          to="/cart"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          <span className="cart-icon">
+            Cart
+            <IoCartOutline className="cart-symbol" />
             <span className="cart-count">{cartItemsCount}</span>
-          </a>
-        </div>
+          </span>
+        </NavLink>
       </nav>
     </header>
   );

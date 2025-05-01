@@ -9,34 +9,28 @@ body {
   background: #f8fafc;
 }
 
+.active {
+}
+
 header {
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   position: sticky;
   top: 0;
   background-color: #ffffff;
   box-shadow: 0 5px 10px #00000050;
-  z-index: 78;
+  z-index: 69;
 }
 
 header nav {
   display: flex;
-  gap: 2rem;
   align-items: center;
+  gap: 2rem;
 }
 
 header h1 span {
   color: #0066ff;
-}
-
-header div {
-  border-radius: 2rem;
-  width: 4rem;
-  height: 2rem;
-  display: flex;
-  justify-content: center;
 }
 
 header a {
@@ -53,33 +47,34 @@ header a::after {
   width: 0px;
   background-color: transparent;
   transition: all 0.5s ease;
-}
-
-header a:hover::after {
-  width: 100%;
-  background-color: #0066ff;
   border-radius: 20%;
 }
 
-header a:last-child {
-  font-size: 1.9rem;
-  transition: all 0.5s ease;
+header a:hover::after,
+header a.active::after {
+  width: 100%;
+  background-color: #0066ff;
 }
 
-header div:hover {
-  cursor: pointer;
+header .cart-symbol {
+  font-size: 1.8rem;
+  transition: all 0.5s ease;
 }
 
 .cart-icon {
   position: relative;
+  display: flex;
+  align-items: center;
 }
+
 header .cart-count {
   background-color: #ff0000;
   font-size: 0.7rem;
   position: absolute;
   border-radius: 50%;
   min-width: 1rem;
-  left: 80%;
+  left: 87%;
+  top: 0;
   padding: 0.1rem;
   color: #ffffff;
   text-align: center;
@@ -245,6 +240,7 @@ footer button {
 .shop,
 .cart {
   padding: 3rem;
+  min-height: 100vh;
 }
 
 .shop .shop-top-text {
@@ -489,17 +485,18 @@ footer button {
 .cart .checkout {
   background-color: #0066ff;
   border-radius: 8px;
-  border: none;
   color: #ffffff;
   font-weight: bold;
   padding: 0.6rem;
   transition: all 0.5s ease;
   font-size: 1.1rem;
   width: 11rem;
+  text-decoration: none;
 }
 
 .cart .checkout {
   background-color: #ffb700;
+  border: none;
   color: black;
 }
 

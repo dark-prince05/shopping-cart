@@ -9,36 +9,42 @@ const Shop = ({ addToCart }) => {
   const [category, setcategory] = useState([]);
   const [searchedProduct, setSearchedProduct] = useState([]);
   const [productCount, setProductCount] = useState(
-    Array.from({ length: 20 }, (_, ind) => 1),
+    Array.from({ length: 21 }, (_, ind) => 1),
   );
 
-  const handleCountChange = (e) => {
+  const resetCount = (prodId) => {
+    let dummy = [...productCount];
+    dummy[prodId] = 1;
+    setProductCount(dummy);
+  };
+
+  const handleCountChange = (e, prodId) => {
     let dummy = [...productCount];
     if (e.target.value > 1000) {
-      dummy[e.target.id] = 999;
+      dummy[prodId] = 999;
     } else if (e.target.value === "") {
-      dummy[e.target.id] = 1;
+      dummy[prodId] = 0;
     } else {
-      dummy[e.target.id] = parseInt(e.target.value);
+      dummy[prodId] = parseInt(e.target.value);
     }
     setProductCount(dummy);
   };
 
-  const increaseCount = (e) => {
+  const increaseCount = (prodId) => {
     let dummy = [...productCount];
-    if (dummy[e.target.id] > 998) {
+    if (dummy[prodId] > 998) {
       return;
     }
-    dummy[e.target.id]++;
+    dummy[prodId]++;
     setProductCount(dummy);
   };
 
-  const decreaseCount = (e) => {
+  const decreaseCount = (prodId) => {
     let dummy = [...productCount];
-    if (dummy[e.target.id] < 2) {
+    if (dummy[prodId] < 1) {
       return;
     }
-    dummy[e.target.id]--;
+    dummy[prodId]--;
     setProductCount(dummy);
   };
 
@@ -119,12 +125,13 @@ const Shop = ({ addToCart }) => {
           </select>
         </div>
         <div className="products">
-          {loading ? (
+          {loading && (
             <div className="loading">
               <RiLoader3Fill className="loading-icon" />
               Loading....
             </div>
-          ) : searchedProduct[0] === "none" ? (
+          )}
+          {searchedProduct[0] === "none" ? (
             <div className="product-not-match">
               No products match your criteria.
             </div>
@@ -153,26 +160,29 @@ const Shop = ({ addToCart }) => {
                           : `$${product.price}.00`}
                       </p>
                       <div className="product-count">
-                        <button id={product.id} onClick={decreaseCount}>
+                        <button onClick={() => decreaseCount(product.id)}>
                           -
                         </button>
                         <input
                           type="tel"
-                          id={product.id}
-                          onChange={handleCountChange}
+                          onChange={(e) => handleCountChange(e, product.id)}
                           value={productCount[product.id]}
                         />
-                        <button id={product.id} onClick={increaseCount}>
+                        <button onClick={() => increaseCount(product.id)}>
                           +
                         </button>
                       </div>
                       <button
                         className="cart-btn"
-                        onClick={(e) =>
-                          addToCart([
-                            { ...product, count: productCount[product.id] },
-                          ])
-                        }
+                        onClick={(e) => {
+                          if (productCount[product.id] > 0)
+                            addToCart({
+                              ...product,
+                              count: productCount[product.id],
+                            });
+
+                          resetCount(product.id);
+                        }}
                       >
                         Add To Cart
                       </button>

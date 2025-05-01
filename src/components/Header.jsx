@@ -1,6 +1,6 @@
 import { IoCartOutline } from "react-icons/io5";
 
-const Header = () => {
+const Header = ({ cartItemsCount }) => {
   return (
     <header>
       <h1>
@@ -13,7 +13,7 @@ const Header = () => {
         <div>
           <a href="#" className="cart-icon">
             <IoCartOutline />
-            <span className="cart-count">0</span>
+            <span className="cart-count">{cartItemsCount}</span>
           </a>
         </div>
       </nav>

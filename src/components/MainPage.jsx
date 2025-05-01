@@ -46,7 +46,7 @@ const Main = () => {
           <form>
             <input type="text" placeholder="Full name" />
             <input type="email" placeholder="Email" />
-            <textarea rows={7} placeholder="Message" />
+            <textarea rows={4} placeholder="Message" />
             <button type="submit">Submit</button>
           </form>
         </div>

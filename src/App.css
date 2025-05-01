@@ -9,9 +9,6 @@ body {
   background: #f8fafc;
 }
 
-.active {
-}
-
 header {
   padding: 1rem 2rem;
   display: flex;
@@ -110,6 +107,7 @@ main a {
 main p {
   font-size: 1.5rem;
 }
+
 main div {
   margin: 0 5rem;
 }
@@ -199,13 +197,14 @@ footer form {
 }
 
 footer input {
-  width: 30rem;
+  width: 30dvw;
   height: 2rem;
   padding: 1rem;
 }
 
 footer textarea {
   padding: 1rem;
+  width: 30dvw;
   resize: vertical;
 }
 
@@ -263,11 +262,9 @@ footer button {
 
 .shop .search-bar {
   font-size: 1.2rem;
-  width: 15rem;
-  height: 2rem;
   border: 2px solid #0066ff;
-  padding: 1rem;
   border-radius: 10px;
+  padding-left: 1rem;
 }
 
 .shop select {
@@ -541,4 +538,355 @@ dialog {
   border-radius: 10px;
   border: 2px solid #0066ff;
   padding: 2rem;
+}
+
+@media screen and (max-width: 1000px) {
+  main h2,
+  main span {
+    font-size: 4rem;
+  }
+
+  main p {
+    font-size: 1.3rem;
+  }
+
+  .shop .search {
+    display: grid;
+    row-gap: 1rem;
+    justify-content: end;
+    justify-items: end;
+    margin: 2rem 0;
+  }
+  .shop,
+  .cart {
+    padding: 1rem;
+  }
+
+  .shop .shop-top-text {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .shop .shop-info {
+    font-size: 1.1rem;
+    margin: 1rem;
+  }
+
+  .shop .search-bar {
+    font-size: 1.1rem;
+    width: 10rem;
+  }
+
+  .shop select {
+    width: 10rem;
+    font-size: 1rem;
+  }
+
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .product {
+    height: 30rem;
+    transition: all 0.5s ease;
+  }
+
+  .product img {
+    height: 30%;
+  }
+}
+
+@media screen and (min-width: 350px) and (max-width: 920px) {
+  header {
+    padding: 0.5rem 0.3rem;
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  header nav {
+    gap: 0.8rem;
+  }
+
+  header a {
+    font-size: 0.8rem;
+  }
+
+  header .cart-symbol {
+    font-size: 1.1rem;
+  }
+
+  header .cart-count {
+    font-size: 0.4rem;
+    min-width: 0.7rem;
+    top: -3px;
+  }
+
+  main {
+    height: 70dvh;
+    text-align: start;
+  }
+
+  main h2,
+  main span {
+    font-size: 2rem;
+  }
+
+  main p {
+    font-size: 0.7rem;
+  }
+
+  main div {
+    margin: 0 0.8rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 2rem;
+  }
+
+  .card {
+    height: 170px;
+    display: grid;
+    padding: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .card .icon {
+    font-size: 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 0.9rem;
+  }
+
+  .page-details a {
+    padding: 0.2rem;
+    margin: 2rem 0 0 0;
+    font-size: 0.8rem;
+    border-radius: 5px;
+  }
+
+  footer {
+    height: 55dvh;
+  }
+
+  footer .form {
+    display: block;
+  }
+
+  footer form {
+    margin: 0;
+    row-gap: 0.8rem;
+    justify-items: center;
+  }
+
+  footer input {
+    width: 90dvw;
+    height: 1rem;
+    padding: 0.8rem;
+  }
+
+  footer textarea {
+    padding: 0.8rem;
+    width: 90dvw;
+    resize: none;
+  }
+
+  footer .contact-us {
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+  footer button {
+    padding: 0.4rem;
+    border-radius: 5px;
+    width: 4rem;
+    font-size: 0.9rem;
+  }
+
+  .copy-right {
+    font-size: 0.7rem;
+    padding: 0.8rem;
+  }
+
+  .shop,
+  .cart {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+
+  .shop .shop-top-text {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .shop .shop-info {
+    font-size: 0.7rem;
+    color: #757575;
+    margin: 1rem;
+  }
+
+  .shop .search {
+    display: grid;
+    justify-content: end;
+    margin: 1rem 0;
+  }
+
+  .shop .search-bar {
+    font-size: 0.8rem;
+    border-radius: 5px;
+    padding-left: 0.4rem;
+  }
+
+  .shop select {
+    font-size: 0.8rem;
+    padding: 0;
+    height: 1.3rem;
+    border-radius: 5px;
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .product {
+    border-radius: 10px;
+    height: 25rem;
+  }
+
+  .product:hover {
+    scale: 1.02;
+  }
+
+  .product img {
+    width: 100%;
+    height: 30%;
+    object-fit: contain;
+  }
+
+  .product .product-details {
+    margin-top: 1rem;
+    gap: 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .product .product-title {
+    font-size: 1rem;
+  }
+
+  .product .product-price {
+    font-size: 1.1rem;
+  }
+
+  .product-count input {
+    width: 2.1rem;
+  }
+
+  .product .cart-btn {
+    font-size: 1rem;
+  }
+
+  .products .product-not-match {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .loading {
+    font-size: 1.1rem;
+  }
+
+  .cart h1 {
+    font-size: 1.2rem;
+  }
+
+  .cart .cart-items {
+    margin: 1rem auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .cart .cart-item-details {
+    gap: 0.5rem;
+  }
+
+  .cart img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .cart .cart-item-remove-btn {
+    border-radius: 5px;
+    padding: 0.3rem;
+    font-size: 0.7rem;
+  }
+
+  .cart .cart-item-category {
+    font-size: 0.8rem;
+  }
+
+  .cart .cart-item-price {
+    font-size: 1rem;
+  }
+
+  .cart .continue-shopping,
+  .cart .checkout {
+    padding: 0.3rem;
+    font-size: 0.7rem;
+    width: 7rem;
+  }
+
+  .cart .add-product-text {
+    padding: 1rem;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .cart .total-amt {
+    font-size: 0.9rem;
+    padding: 1rem 0;
+  }
+
+  dialog::backdrop {
+    backdrop-filter: blur(5px);
+  }
+
+  dialog {
+    line-height: 1.1;
+    font-size: 0.9rem;
+    width: 200px;
+  }
+
+  dialog h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 350px) and (max-width: 920px) {
+  footer {
+    height: 90dvh;
+  }
+  main {
+    height: 70dvh;
+    text-align: center;
+  }
+
+  main h2,
+  main span {
+    font-size: 2.5rem;
+  }
+
+  main p {
+    font-size: 0.9rem;
+  }
+
+  main div {
+    margin: 0 0.8rem;
+  }
 }

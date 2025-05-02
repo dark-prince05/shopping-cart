@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { ShopContext } from "../App.jsx";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
 import { RiLoader3Fill } from "react-icons/ri";
 
 const Shop = () => {
-  const { handleAddToCart } = useOutletContext(); //used to retrieve the functionality from the parent during routing
+  const { handleAddToCart } = useContext(ShopContext); //change to useContext
 
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);

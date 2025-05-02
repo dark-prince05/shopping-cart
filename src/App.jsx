@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState, createContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 
+export const ShopContext = createContext({
+  handleAddToCart: () => {},
+  cartItems: [],
+  setCartItems: [],
+});
+
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleAddToCart = (product) => {
     setCartItems((prev) => {
@@ -22,11 +35,11 @@ function App() {
     });
   };
   return (
-    <>
+    <ShopContext.Provider value={{ handleAddToCart, cartItems, setCartItems }}>
       <Header cartItemsCount={cartItems.length} />
-      <Outlet context={{ handleAddToCart, cartItems, setCartItems }} />
+      <Outlet />
       <Footer />
-    </>
+    </ShopContext.Provider>
   );
 }
 

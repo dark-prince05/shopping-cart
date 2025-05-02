@@ -600,7 +600,7 @@ dialog {
 
 @media screen and (min-width: 350px) and (max-width: 920px) {
   header {
-    padding: 0.5rem 0.3rem;
+    padding: 0.5rem 0.6rem 0.5rem 0.3rem;
   }
 
   header h1 {

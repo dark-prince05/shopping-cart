@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import { useOutletContext, Link } from "react-router-dom";
+import { useState, useEffect, useRef, useContext } from "react";
+import { ShopContext } from "../App.jsx";
+import { Link } from "react-router-dom";
 import { MdStarOutline, MdStarRate } from "react-icons/md";
 
 const Cart = () => {
-  const { cartItems, setCartItems } = useOutletContext(); //used to retrieve the functionality from the parent during routing
+  const { cartItems, setCartItems } = useContext(ShopContext); //change to useContext
 
   const [totalAmt, setTotalAmt] = useState(0);
   const dialogRef = useRef(null);
